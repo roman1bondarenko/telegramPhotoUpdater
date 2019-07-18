@@ -10,7 +10,7 @@ def generate_image(time):
     font = ImageFont.truetype('./font/digital-7.ttf', TEXT_SIZE)
     d = ImageDraw.Draw(img)
     text_w, text_h = d.textsize(time, font)
-    d.text(((IMAGE_W-text_w)/2, (IMAGE_H-text_h)/2), time, font=font, fill=(255, 255, 255))
+    d.text(((IMAGE_W - text_w) / 2, (IMAGE_H - text_h) / 2), time, font=font, fill=(255, 255, 255))
     img.save('./images/' + time + '.png')
 
 
