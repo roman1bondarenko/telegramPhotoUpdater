@@ -1,4 +1,5 @@
 from datetime import datetime
+from datetime import timedelta
 import time
 from telethon.tl.functions.photos import UploadProfilePhotoRequest, DeletePhotosRequest
 from imageGenerator import generate_images
@@ -10,9 +11,11 @@ from telethon.sync import TelegramClient
 api_id = 32143245
 api_hash = 'ajhfiuewhjr32orqdoiqjreqjpoiqjqorj'
 
+TIME_ZONE = 0
+
 
 def is_time_changed(prev_converted_time):
-    return convert_time(datetime.now()) != prev_converted_time
+    return convert_time(datetime.now() + timedelta(TIME_ZONE)) != prev_converted_time
 
 
 def convert_time(date_time):
@@ -22,10 +25,10 @@ def convert_time(date_time):
 
 
 def start_update_photo():
-    prev_time = datetime.now()
+    prev_time = datetime.now() + timedelta(TIME_ZONE)
     while True:
         if is_time_changed(convert_time(prev_time)):
-            prev_time = datetime.now()
+            prev_time = datetime.now() + timedelta(TIME_ZONE)
             print(prev_time)
             client(DeletePhotosRequest(client.get_profile_photos('me')))
             file = client.upload_file('./images/' + convert_time(prev_time) + '.png')
