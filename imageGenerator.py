@@ -28,4 +28,3 @@ def generate_images():
         print('end generating images')
 
 
-generate_images()
