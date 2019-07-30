@@ -11,11 +11,12 @@ from telethon.sync import TelegramClient
 api_id = 32143245
 api_hash = 'ajhfiuewhjr32orqdoiqjreqjpoiqjqorj'
 
-TIME_ZONE = 0
+
+TIME_DIFF = 3
 
 
 def is_time_changed(prev_converted_time):
-    return convert_time(datetime.now() + timedelta(TIME_ZONE)) != prev_converted_time
+    return convert_time(datetime.now() + timedelta(hours=TIME_DIFF)) != prev_converted_time
 
 
 def convert_time(date_time):
@@ -25,10 +26,10 @@ def convert_time(date_time):
 
 
 def start_update_photo():
-    prev_time = datetime.now() + timedelta(TIME_ZONE)
+    prev_time = datetime.now() + timedelta(hours=TIME_DIFF)
     while True:
         if is_time_changed(convert_time(prev_time)):
-            prev_time = datetime.now() + timedelta(TIME_ZONE)
+            prev_time = datetime.now() + timedelta(hours=TIME_DIFF)
             print(prev_time)
             client(DeletePhotosRequest(client.get_profile_photos('me')))
             file = client.upload_file('./images/' + convert_time(prev_time) + '.png')
