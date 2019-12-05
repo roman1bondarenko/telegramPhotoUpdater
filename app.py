@@ -40,7 +40,7 @@ def start_update_photo():
 
 
 with TelegramClient('telegramPhotoUpdater', api_id, api_hash) as client:
-    if len(os.listdir('./images') ) == 0:
+    if len(os.listdir('./images/') ) == 0:
         generate_images()
     client.start()
     print('login success... start work')
