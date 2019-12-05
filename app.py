@@ -13,7 +13,7 @@ api_id = os.environ['API_ID']
 api_hash = os.environ['API_HASH']
 
 
-TIME_DIFF = os.environ['TIME_DIFF']
+TIME_DIFF = int(os.environ['TIME_DIFF'])
 
 
 def is_time_changed(prev_converted_time):
