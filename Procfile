@@ -1,1 +1,1 @@
-worker: python3 app.py -p $PORT
+worker: python3 app.py
